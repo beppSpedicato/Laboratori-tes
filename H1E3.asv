@@ -1,0 +1,82 @@
+%% esercizio 3.a
+n = [-10:10];
+x = exp(-n).* (n>= 0);  %qui dovrebbe prendere exp(-n) e lo moltiplpico per
+                        % un vettore booleano che vale
+                        % 1 solo quando n è maggiore uguale a 0. se n fosse
+                        %[-5:5], quel vettore che moltiplico sarebbe
+                        %[0,0,0,0,0,1,1,1,1,1,1] e ho 6 uni (comprendo lo
+                        %zero)
+figure
+set(gca, 'FontSize', 18);
+stem(n, x, 'b');
+xlabel('n');
+ylabel('x(n)');
+title('e^-^n');
+axis([-10 10 0 1.2]);
+grid on;
+
+%% esercizio 3.b
+n = [-10:10];           % potrei non mettere le parentesi
+A = 5; % per esempio
+x = A.*ones(21);
+
+figure
+set(gca, 'FontSize', 18);
+stem(n, x, 'r');
+xlabel('n');
+ylabel('x(n)');
+title('x = A ');
+axis([-10 10 0 10]);
+grid on;
+
+%% esercizio 3.c
+
+n = -10 : 10;
+A = 5;              % sempre per esempio
+N = 5;              %periodo della sinusoide
+x = A.*exp(-(2*1i*pi.*n)./N);
+
+% stampo la parte reale e immaginarie separate
+figure  
+set(gca, 'FontSize', 18);
+stem(n, real(x), 'r');
+xlabel('n');
+ylabel('Re{x(n)}');
+title('x = Ae^-^j^2^p^i^n^/^N ');
+axis([-10 10 -10 10]);
+grid on;
+
+figure
+set(gca, 'FontSize', 18);
+stem(n, imag(x), 'r');
+xlabel('n');
+ylabel('Img{x(n)}');
+title('x = Ae^-^j^2^p^i^n^/^N ');
+axis([-10 10 -10 10]);
+grid on;
+
+
+%% esercizio 3.d
+
+n = -10:10;
+A = 5;
+x = A.*(n >= 0);
+
+figure
+set(gca, 'FontSize', 18);
+stem(n, x, 'r');
+xlabel('n');
+ylabel('x(n)');
+title('x = A*H(n) ');
+axis([-10 10 0 10]);
+grid on;
+
+%% esercizio 3.e
+
+n = -10: 10;
+A = 5;
+N = 3;
+n_0 = 4;
+x = A.* (abs(n-n_0)<N)      % in teoria sto moltiplicando per un booleano
+                            %che vale 1 solo se 
+
