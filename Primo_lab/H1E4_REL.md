@@ -14,6 +14,9 @@ xref = audioread('three_ref.wav');
 ```
 
 ## Metodo 1
+
+In questo l'obiettivo è quello di trovare il segnale xn tale per cui ```en = an.*xn - xref``` ha energia minore, dove ```an``` è trovato risolvendo ```sum(abs(an.*xn).^2) = sum(abs(xref).^2)``` .
+
 ```matlab
 %% inizio metodo 1
 % Calcolo energia dei segnali
@@ -40,11 +43,18 @@ else
 end
 %% fine metodo 1
 ```
-In questo l'obiettivo è quello di trovare il segnale xn tale per cui ```en = an.*xn - xref``` ha energia minore, dove ```an``` è trovato risolvendo ```sum(abs(an.*xn).^2) = sum(abs(xref).^2)``` . In questo caso guardando i grafici di ```e1``` ed ```e2``` possiamo notare la differenza di energia:
-<img width="779" alt="Grafico e1" src="https://github.com/beppSpedicato/Laboratori-tes/assets/55913549/c04ddca6-ee07-4dfc-80aa-a2998e418d64">
-<img width="840" alt="Grafico e2" src="https://github.com/beppSpedicato/Laboratori-tes/assets/55913549/c5e85884-da52-4ef0-baa6-e2eecf62dfc3">
+
+In questo caso guardando i grafici di ```e1``` ed ```e2``` possiamo notare la differenza di energia:
+
+![Alt text](./grafico%20e1.png "grafico e1")
+![Alt text](./grafico%20e2.png "grafico e2")
+
 Possiamo perciò stabilire che x1 ('three_noise.wav') è più simile a xref ('three_ref.wav').
+
 ## Metodo 2
+
+Il secondo metodo invece prende in considerazione l'autocorrelazione del segnale di riferimento e le cross_correlazioni tra xref e i segnali xn. Vengono perciò svolti i calcoli del metodo 1 ma su queste nuove variabili, prendendo in considerazione il segnale xn per il quale la differenza fra la cross-correlazione normalizzata e l'autocorrelazione di xref sia minore. 
+
 ```matlab
 %% inizio metodo 2
 % Calcolo autocorrelazione e cross-correlazioni
@@ -78,13 +88,7 @@ end
 %% fine metodo 2
 ```
 
-Il secondo metodo invece prende in considerazione l'autocorrelazione del segnale di riferimento e le cross_correlazioni tra xref e i segnali xn. Vengono perciò svolti i calcoli del metodo 1 ma su queste nuove variabili, prendendo in considerazione il segnale xn per il quale la differenza fra la cross-correlazione normalizzata e l'autocorrelazione di xref sia minore. 
-<img width="747" alt="grafico R_c1cap" src="https://github.com/beppSpedicato/Laboratori-tes/assets/55913549/37248d41-7a27-4b18-97c7-633f7ce455c3">
-<img width="747" alt="grafico R_c2cap" src="https://github.com/beppSpedicato/Laboratori-tes/assets/55913549/7a084dbd-e49a-436b-a926-808406840bc6">
-<br>
-In questo caso possiamo notare come la differenza fra le due energia sia nettamente evidente, ottenendo così lo stesso risultato del primo esercizio
+![Alt text](./grafico%20R_c1cap.png "grafico R_c1cap")
+![Alt text](./grafico%20R_c2cap.png "grafico R_c2cap")
 
-
-
-
-
+In questo caso possiamo notare come la differenza fra le due energia sia nettamente evidente, ottenendo così lo stesso risultato del primo esercizio.
