@@ -41,8 +41,9 @@ end
 %% fine metodo 1
 ```
 In questo l'obiettivo è quello di trovare il segnale xn tale per cui ```en = an.*xn - xref``` ha energia minore, dove ```an``` è trovato risolvendo ```sum(abs(an.*xn).^2) = sum(abs(xref).^2)``` . In questo caso guardando i grafici di ```e1``` ed ```e2``` possiamo notare la differenza di energia:
-
-
+<img width="779" alt="Grafico e1" src="https://github.com/beppSpedicato/Laboratori-tes/assets/55913549/c04ddca6-ee07-4dfc-80aa-a2998e418d64">
+<img width="840" alt="Grafico e2" src="https://github.com/beppSpedicato/Laboratori-tes/assets/55913549/c5e85884-da52-4ef0-baa6-e2eecf62dfc3">
+Possiamo perciò stabilire che x1 ('three_noise.wav') è più simile a xref ('three_ref.wav').
 ## Metodo 2
 ```matlab
 %% inizio metodo 2
