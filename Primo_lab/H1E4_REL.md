@@ -81,6 +81,7 @@ end
 Il secondo metodo invece prende in considerazione l'autocorrelazione del segnale di riferimento e le cross_correlazioni tra xref e i segnali xn. Vengono perciò svolti i calcoli del metodo 1 ma su queste nuove variabili, prendendo in considerazione il segnale xn per il quale la differenza fra la cross-correlazione normalizzata e l'autocorrelazione di xref sia minore. 
 <img width="747" alt="grafico R_c1cap" src="https://github.com/beppSpedicato/Laboratori-tes/assets/55913549/37248d41-7a27-4b18-97c7-633f7ce455c3">
 <img width="747" alt="grafico R_c2cap" src="https://github.com/beppSpedicato/Laboratori-tes/assets/55913549/7a084dbd-e49a-436b-a926-808406840bc6">
+<br>
 In questo caso possiamo notare come la differenza fra le due energia sia nettamente evidente, ottenendo così lo stesso risultato del primo esercizio
 
 
