@@ -5,7 +5,7 @@ L'esercizio prevede di confrontare due segnali con uno di riferimento e stabilir
 due metodi differenti.
 
 ## Variabii Principali
-Per provare vengono usati tre file audio, campionati a frequenza fs
+Per provare vengono usati tre file audio, campionati a frequenza ```fs```
 ```matlab
 fs = 44100;
 x1 = audioread('three_noise.wav');
