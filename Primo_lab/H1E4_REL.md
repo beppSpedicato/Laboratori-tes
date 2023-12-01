@@ -40,7 +40,7 @@ else
 end
 %% fine metodo 1
 ```
-In questo l'obiettivo è quello di trovare il segnale x tale per cui ```en = an.*xn - xref``` avesse energia minore, dove ```an``` è trovato risolvendo ```sum(abs(an.*xn).^2) = sum(abs(xref).^2)``` . In questo caso guardando i grafici di ```e1``` ed ```e2``` possiamo notare la differenza di energia:
+In questo l'obiettivo è quello di trovare il segnale xn tale per cui ```en = an.*xn - xref``` ha energia minore, dove ```an``` è trovato risolvendo ```sum(abs(an.*xn).^2) = sum(abs(xref).^2)``` . In questo caso guardando i grafici di ```e1``` ed ```e2``` possiamo notare la differenza di energia:
 
 
 ## Metodo 2
