@@ -61,4 +61,4 @@ else
    disp('X2 è più simile a Xref');
 end
 
-%% fine metodo 2
+%% fine metodo 2 fsadfs
