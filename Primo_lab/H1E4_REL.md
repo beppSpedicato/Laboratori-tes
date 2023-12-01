@@ -4,7 +4,7 @@
 L'esercizio prevede di confrontare due segnali con uno di riferimento e stabilire quale dei due è più simile al riferimento, utilizzando
 due metodi differenti.
 
-## Variabii Principali
+## Variabili Principali
 Per provare vengono usati tre file audio, campionati a frequenza ```fs```
 ```matlab
 fs = 44100;
@@ -40,6 +40,8 @@ else
 end
 %% fine metodo 1
 ```
+In questo l'obiettivo è quello di trovare il segnale x tale per cui ```en = an.*xn - xref``` avesse energia minore, dove ```an``` è trovato risolvendo ```sum(abs(an.*xn).^2) = sum(abs(xref).^2)``` . In questo caso guardando i grafici di ```e1``` ed ```e2``` possiamo notare la differenza di energia:
+
 
 ## Metodo 2
 ```matlab
