@@ -47,8 +47,8 @@ E_rc2 = sum(abs(R_c2).^2);
 ac1 = sqrt(E_rref / E_rc1);
 ac2 = sqrt(E_rref / E_rc2);
 
-R_c1cap = ac1.*R_c1;
-R_c2cap = ac2.*R_c2;
+R_c1cap = ac1.*R_c1 - R_ref;
+R_c2cap = ac2.*R_c2 - R_ref;
 
 % Calcolo energia delle correlazioni normalizzate
 e_rc1cap = sum(abs(R_c1cap).^2);
@@ -61,4 +61,4 @@ else
    disp('X2 è più simile a Xref');
 end
 
-%% fine metodo 2 fsadfs
+%% fine metodo 2
