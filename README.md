@@ -2,7 +2,12 @@
 
 ## Matricole
 299328 - Giuseppe Spedicato
-
+<br>
+000000 - Gugli
+<br>
+000000 - Fabio
+<br>
+000000 - Christian
 
 ### Primo Laboratorio 
 Scadenza 14/12 <br>
