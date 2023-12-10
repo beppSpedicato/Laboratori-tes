@@ -4,7 +4,7 @@
 % calcolo esplicito della DFT, poi ne faccio il modulo quadro per trovare
 % lo spettro di energia
 
-M = 40;                 % durata sottofinestre temporali
+M = 15;                 % durata sottofinestre temporali
 n_fin = floor(length(x) / (M * fc)); 
 % mi devo calcolare il numero di finestre temporali.
 % floor(A) approssima al primo intero più vicino <= ad A. length(x)/fc e'
