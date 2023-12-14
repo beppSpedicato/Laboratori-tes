@@ -1,5 +1,8 @@
 % audioread mi da la frequenza di campionamento del segnale
 [x, fc] = audioread("Fragments_of_Time.wav");
+% Sovrascrivo x selezionando solo il primo canale, dal momento che era
+% stereo
+x = x(:, 1);
 
 % calcolo esplicito della DFT, poi ne faccio il modulo quadro per trovare
 % lo spettro di energia
