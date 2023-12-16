@@ -13,7 +13,7 @@ for it = 1 : numero_sotto_finestre
     %% Calcolo Sotto finestra temporale
     inizio_finestra = (it - 1) * M * fc + 1;
     fine_finestra = it * M * fc;
-    sotto_finestra = x(inizio_finestra : fine_finestra)';  
+    sotto_finestra = x(inizio_finestra : fine_finestra)';   % traspongo il vettore colonna per farlo diventare vettore riga
 
     %% Calcolo DFT
     tic;
