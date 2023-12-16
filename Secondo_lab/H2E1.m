@@ -1,5 +1,5 @@
 %% Funzioni
-dft = @(x, k) sum(x.*exp((-1i * 2 * pi * (k-1)).*(0:N-1)/ N));
+dft = @(x, k, N) sum(x.*exp((-1i * 2 * pi * (k-1)).*(0:N-1)/ N));
 spettro_di_energia = @(X) abs(X).^2;
 print_exec_time = @(iter, exec_time, description) disp(['Tempo esecuzione ' description ' iterazione ' num2str(iter) ': ' num2str(exec_time) ' s']);
 
@@ -20,7 +20,7 @@ for it = 1 : numero_sotto_finestre
         N = length(sotto_finestra);
         X_dft = zeros(1, N); 
         for k = 1:N
-            X_dft(k) = dft(sotto_finestra, k);
+            X_dft(k) = dft(sotto_finestra, k, N);
         end
         spettro_dft = spettro_di_energia(fftshift(X_dft));
     exec_time_dft = toc;    
