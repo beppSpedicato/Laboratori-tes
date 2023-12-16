@@ -6,14 +6,14 @@ print_exec_time = @(iter, exec_time, description) disp(['Tempo esecuzione ' desc
 %% Variabili principali
 [x, fc] = audioread("Fragments_of_Time.wav");
 x = x(:, 1); % Se l'audio è di tipo 'stereo'
-M = 3; % Durata sotto finestra in secondi         
+M = 0.5; % Durata sotto finestra in secondi         
 numero_sotto_finestre = floor(length(x) / (fc * M)); 
 
-for i = 1 : numero_sotto_finestre
+for it = 1 : numero_sotto_finestre
     %% Calcolo Sotto finestra temporale
-    inizio_finestra = (i - 1) * M * fc + 1;
-    fine_finestra = i * M * fc;
-    sotto_finestra = x(start_fin : end_fin)';  
+    inizio_finestra = (it - 1) * M * fc + 1;
+    fine_finestra = it * M * fc;
+    sotto_finestra = x(inizio_finestra : fine_finestra)';  
 
     %% Calcolo DFT
     tic;
@@ -34,7 +34,7 @@ for i = 1 : numero_sotto_finestre
     %% Calcolo Errore
     errore = abs(spettro_dft - spettro_fft);
     errore_medio = sum(errore)/length(errore);
-    disp(['Errore medio iterazione ' num2str(i) ' : ' num2str(errore_medio)])
+    disp(['Errore medio iterazione ' num2str(it) ' : ' num2str(errore_medio)])
 
     %% Grafico DFT, FFT, Errore
     figure_in_KHz(spettro_dft, fc, "DFT", "Spettro di energia DFT", "b");
@@ -42,6 +42,6 @@ for i = 1 : numero_sotto_finestre
     figure_in_KHz(errore, fc, "Errore durante il calcolo della FFT", "Errore (DFT - FFT", "g");
 
     %% Valutazione tempi di esecuzione
-    print_exec_time(i, exec_time_dft, 'dft');
-    print_exec_time(i, exec_time_fft, 'fft');
+    print_exec_time(it, exec_time_dft, 'dft');
+    print_exec_time(it, exec_time_fft, 'fft');
 end
