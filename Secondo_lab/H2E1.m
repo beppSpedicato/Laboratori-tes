@@ -10,14 +10,14 @@ M = 0.5; % Durata sotto finestra in secondi
 numero_sotto_finestre = floor(length(x) / (fc * M)); 
 
 for it = 1 : numero_sotto_finestre
-    %% Calcolo Sotto finestra temporale
+    %% Calcolo sottofinestra temporale
     inizio_finestra = (it - 1) * M * fc + 1;
     fine_finestra = it * M * fc;
     sotto_finestra = x(inizio_finestra : fine_finestra)';   % traspongo il vettore colonna per farlo diventare vettore riga
 
     %% Calcolo DFT
     tic;
-        N = length(sotto_finestra);
+        N = length(sotto_finestra);        % N = numero campioni della sottofinestra
         X_dft = zeros(1, N); 
         for k = 1:N
             X_dft(k) = dft(sotto_finestra, k, N);
