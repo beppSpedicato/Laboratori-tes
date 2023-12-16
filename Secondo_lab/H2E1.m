@@ -1,85 +1,47 @@
-% audioread mi da la frequenza di campionamento del segnale
+%% Funzioni
+dft = @(x, k) sum(x.*exp((-1i * 2 * pi * (k-1)).*(0:N-1)/ N));
+spettro_di_energia = @(X) abs(X).^2;
+print_exec_time = @(iter, exec_time, description) disp(['Tempo esecuzione ' description ' iterazione ' num2str(iter) ': ' num2str(exec_time) ' s']);
+
+%% Variabili principali
 [x, fc] = audioread("Fragments_of_Time.wav");
-% Sovrascrivo x selezionando solo il primo canale, dal momento che era
-% stereo
-x = x(:, 1);
+x = x(:, 1); % Se l'audio è di tipo 'stereo'
+M = 3; % Durata sotto finestra in secondi         
+numero_sotto_finestre = floor(length(x) / (fc * M)); 
 
-% calcolo esplicito della DFT, poi ne faccio il modulo quadro per trovare
-% lo spettro di energia
+for i = 1 : numero_sotto_finestre
+    %% Calcolo Sotto finestra temporale
+    inizio_finestra = (i - 1) * M * fc + 1;
+    fine_finestra = i * M * fc;
+    sotto_finestra = x(start_fin : end_fin)';  
 
-M = 0.5;                 % durata in secondi di ogni sottofinestra temporale
-n_fin = floor(length(x) / (fc * M)); 
-% mi devo calcolare il numero di finestre temporali.
-% floor(A) approssima al primo intero più vicino <= ad A. length(x)/fc e'
-% la lunghezza in secondi del file. numCamp = durata/ Tc, con Tc = 1/fc,
-% ogni quanto campiono il segnale, e numCamp e' length(x). divido poi la
-% durata in secondi per la grandezza della finestra per sapere quante
-% finestre ho.
+    %% Calcolo DFT
+    tic;
+        N = length(sotto_finestra);
+        X_dft = zeros(1, N); 
+        for k = 1:N
+            X_dft(k) = dft(sotto_finestra, k);
+        end
+        spettro_dft = spettro_di_energia(fftshift(X_dft));
+    exec_time_dft = toc;    
 
-for i = 1 : 1
-% start_fin e end_fin sono gli # esimi campioni in cui comincia/finisce la
-% finestra
-    start_fin = (i - 1) * M * fc + 1;
-% M*fc e' il numero di campioni nella finestra di M secondi. Moltiplicarlo
-% per i-1 mi mette alla fine della scorsa finestra, il +1 alla fine mi
-% mette nel primo campione della finestra corrente
-    end_fin = i * M * fc;
+    %% Calcolo FFT
+    tic;
+        X_fft = fft(sotto_finestra);
+        spettro_fft = spettro_di_energia(fftshift(X_fft));
+    exec_time_fft = toc;
 
-    sub_fin = x(start_fin : end_fin)';  % lo traspongo altrimenti viene colonna
+    %% Calcolo Errore
+    errore = abs(spettro_dft - spettro_fft);
+    errore_medio = sum(errore)/length(errore);
+    disp(['Errore medio iterazione ' num2str(i) ' : ' num2str(errore_medio)])
 
-% la mia sottofinestra. Qui sotto inizio il calcolo della dft
-% metodo 1: manualmente
+    %% Grafico DFT, FFT, Errore
+    figure_in_KHz(spettro_dft, fc, "DFT", "Spettro di energia DFT", "b");
+    figure_in_KHz(spettro_fft, fc, "FFT", "Spettro di energia FFT", "r");
+    figure_in_KHz(errore, fc, "Errore durante il calcolo della FFT", "Errore (DFT - FFT", "g");
 
-    N = length(sub_fin);
-    X = zeros(1, N);        % qui mettero' la mia dft
-
-    for k = 1:N
-        
-            X(k) = sum(sub_fin.* exp((-1i * 2 * pi * (k-1)) .* (0:N-1) / N));
-
-            
-            %disp(['iterazione ' num2str(k) ' di ' num2str(N)]);
-
-        
-    end
-
-% lo spettro di energia e' il modulo quadro della dft
-    SE1 = abs(fftshift(X)).^2;
-
-    figure('Name','1')
-    set(gca, 'FontSize', 19);
-    stem(1:length(X), SE1, 'b');
-    xlabel('k');
-    ylabel('spettro di energia');
-    title('DFT a manina');
-    
-    grid on;
-    
-
-    SE2 = abs(fftshift(fft(sub_fin))).^2;
-    figure('Name','1')
-    set(gca, 'FontSize', 19);
-    stem(1:length(X), SE2, 'r');
-    xlabel('k');
-    ylabel('spettro di energia');
-    title('FFT non a manina');
-    
-    grid on;
-
-
-    diff = abs(SE1 - SE2);
-    figure('Name','1')
-    set(gca, 'FontSize', 19);
-    stem(1:length(X), diff, 'g');
-    xlabel('k');
-    ylabel('differenza spettri');
-    title('grafico errore');
-    
-    grid on;
-
-
+    %% Valutazione tempi di esecuzione
+    print_exec_time(i, exec_time_dft, 'dft');
+    print_exec_time(i, exec_time_fft, 'fft');
 end
-
-
-
-
