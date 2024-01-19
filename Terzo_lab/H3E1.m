@@ -4,10 +4,10 @@ spettro_di_energia = @(X) abs(X).^2;
 %% Variabili principali
 [x, Fs] = audioread("Fragments_of_Time.wav");
 x = x(:, 1); 
-T = 0.2; % ampiezza porta
+T = 2; % ampiezza porta
 
 % Crea il segnale rettangolare (porta) di ampiezza T
-t = linspace(0, T, T*Fs);
+t = linspace(0, T);
 porta = rectpuls(t);
 
 % Segnale filtrato tramite porta
@@ -31,7 +31,7 @@ xlabel('Tempo (s)');
 ylabel('Ampiezza');
 grid on;
 
-plot(t_f, HF);
+plot(linspace(-length(x_filtered)/(2*Fs), length(x_filtered)/(2*Fs), length(x_filtered)), HF);
 title('Funzione di trasferimento H(f)');
 xlabel('Frequenza Hz');
 ylabel('Ampiezza');
@@ -53,14 +53,20 @@ ylabel('Ampiezza');
 
 % Plot dello SPETTRO del segnale di input e del segnale filtrato
 figure;
-subplot(2,1,1);
+subplot(3,1,1);
 plot(t_x, spettro_x);
 title('Spettro Segnale di Input');
 xlabel('Tempo (s)');
 ylabel('Ampiezza');
 
-subplot(2,1,2);
+subplot(3,1,2);
 plot(t_f, spettro_x_filtered);
 title('Spettro Segnale Filtrato');
+xlabel('Tempo (s)');
+ylabel('Ampiezza');
+
+subplot(3,1,3);
+plot(t, porta);
+title('PORTA ');
 xlabel('Tempo (s)');
 ylabel('Ampiezza');
