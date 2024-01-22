@@ -9,7 +9,7 @@ T = 2; % ampiezza porta nel tempo
 
 % Crea il segnale rettangolare (porta) di ampiezza T
 t = linspace(0, T);
-porta = rectpuls(t);
+porta = rectpuls(t)';
 
 x_filtered_pt = H3base(x, porta, Fs, "PORTA nel TEMPO");
 
@@ -18,7 +18,7 @@ F = 70000; % ampiezza porta in frequenza
 
 % Crea il segnale rettangolare (porta) di ampiezza T
 tf = linspace(-length(x), length(x));
-portaf = sin(pi*F.*tf)./(pi.*tf);
+portaf = (sin(pi*F.*tf)./(pi.*tf))';
 
 x_filtered_pf = H3base(x, portaf, Fs, "PORTA in Frequenza");
 
