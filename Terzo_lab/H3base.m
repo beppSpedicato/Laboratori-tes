@@ -35,37 +35,3 @@ function result = H3base(x, h, Fs, label)
     xlabel('Tempo (s)');
     ylabel('Ampiezza');
 end
-
-% Plot del segnale di input e del segnale filtrato
-figure;
-subplot(2,1,1);
-plot(t_x, x);
-title('Segnale di Input');
-xlabel('Tempo (s)');
-ylabel('Ampiezza');
-
-subplot(2,1,2);
-plot(t_f, x_filtered);
-title('Segnale Filtrato');
-xlabel('Tempo (s)');
-ylabel('Ampiezza');
-
-% Plot dello SPETTRO del segnale di input e del segnale filtrato
-figure;
-subplot(3,1,1);
-plot(t_x, spettro_x);
-title('Spettro Segnale di Input');
-xlabel('Tempo (s)');
-ylabel('Ampiezza');
-
-subplot(3,1,2);
-plot(t_f, spettro_x_filtered);
-title('Spettro Segnale Filtrato');
-xlabel('Tempo (s)');
-ylabel('Ampiezza');
-
-subplot(3,1,3);
-plot(t, porta);
-title('PORTA ');
-xlabel('Tempo (s)');
-ylabel('Ampiezza');
